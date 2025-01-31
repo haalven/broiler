@@ -37,7 +37,7 @@ def main() -> int:
 
     # my path
     my_path = os.path.abspath(__file__)
-    my_dir = os.path.dirname(my_path)
+    my_dir  = os.path.dirname(my_path)
     my_name = os.path.basename(my_path)
 
     # load configuration file
