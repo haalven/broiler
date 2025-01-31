@@ -1,2 +1,2 @@
 # broiler
-a python boilerplate
+a python [boilerplate](https://en.wikipedia.org/wiki/Boilerplate_code)
