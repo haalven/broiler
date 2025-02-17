@@ -14,7 +14,8 @@ import argparse
 
 # read TOML file
 def read_configuration(my_dir, my_name):
-    config_path = os.path.join(my_dir, my_name + '.toml')
+    config_file = os.path.splitext(my_name)[0] + '.toml'
+    config_path = os.path.join(my_dir, config_file)
     try:
         with open(config_path, 'rb') as f:
             return tomllib.load(f)
@@ -32,7 +33,6 @@ def get_arguments(my_name):
                         help='option help')
     return parser.parse_args()
 
-
 def main() -> int:
 
     # my path
@@ -49,7 +49,6 @@ def main() -> int:
     # fancy code starts here
 
     return 0
-
 
 if __name__ == '__main__':
     sys.exit(main())
