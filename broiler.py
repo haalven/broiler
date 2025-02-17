@@ -7,10 +7,9 @@
 # requirements?
 # syntax: program [--option] parameter
 
-import sys
-import os.path
-import tomllib
-import argparse
+
+import sys, os.path, tomllib, argparse
+
 
 # read TOML file
 def read_configuration(my_dir, my_name):
@@ -34,7 +33,6 @@ def get_arguments(my_name):
     return parser.parse_args()
 
 def main() -> int:
-
     # my path
     my_path = os.path.abspath(__file__)
     my_dir  = os.path.dirname(my_path)
