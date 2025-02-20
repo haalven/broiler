@@ -10,15 +10,32 @@
 
 import sys, os.path, tomllib, argparse
 
+DEBUG_LEVEL = 1
+
+
+# xterm formatting
+def f(code): return '\x1B[' + str(code) + 'm'
+def c(code): return f('38;5;' + str(code))
+
+# warnings
+def warn(msg):
+    global DEBUG_LEVEL
+    if DEBUG_LEVEL: print(c(196) + str(msg) +f(0),
+                          file=sys.stderr)
 
 # read TOML file
 def read_configuration(my_dir, my_name):
-    config_file = os.path.splitext(my_name)[0] + '.toml'
-    config_path = os.path.join(my_dir, config_file)
+    c_file = os.path.splitext(my_name)[0] +'.toml'
+    c_path = os.path.join(my_dir, c_file)
+    if not os.path.exists(c_path):
+        warn('config not found at: ' + c_path)
+        return None
     try:
-        with open(config_path, 'rb') as f:
+        with open(c_path, 'rb') as f:
             return tomllib.load(f)
-    except: return None
+    except:
+        warn('error reading toml: ' + c_path)
+        return None
 
 # parse arguments
 def get_arguments(my_name):
@@ -45,6 +62,7 @@ def main() -> int:
     arguments = get_arguments(my_name)
 
     # fancy code starts here
+
 
     return 0
 
