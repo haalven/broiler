@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
-# or #!/usr/bin/python3
-# or #!/path/to/.venv/bin/python3
+#! /usr/bin/env python3
+# or /usr/bin/python3
+# or /path/to/.venv/bin/python3
 
 # name of the program
 # what is this?
@@ -18,27 +18,25 @@ def f(code): return '\x1B[' + str(code) + 'm'
 def c(code): return f('38;5;' + str(code))
 
 # warnings
-def warn(msg):
+def warn(msg:str):
     global DEBUG_LEVEL
-    if DEBUG_LEVEL: print(c(196) + str(msg) +f(0),
-                          file=sys.stderr)
+    if DEBUG_LEVEL:
+        print(c(196) + str(msg) + f(0),
+              file=sys.stderr)
 
 # read TOML file
-def read_configuration(my_dir, my_name):
+def read_configuration(my_dir:str, my_name:str) -> dict:
     c_file = os.path.splitext(my_name)[0] +'.toml'
     c_path = os.path.join(my_dir, c_file)
-    if not os.path.exists(c_path):
-        warn('config not found at: ' + c_path)
-        return None
     try:
         with open(c_path, 'rb') as f:
             return tomllib.load(f)
-    except:
-        warn('error reading toml: ' + c_path)
-        return None
+    except Exception as e:
+        warn('toml error: ' + str(e))
+        return {}
 
 # parse arguments
-def get_arguments(my_name):
+def get_arguments(my_name:str) -> argparse.Namespace:
     parser = argparse.ArgumentParser(prog=my_name)
     parser.add_argument('parameter',
                         type=str,
