@@ -13,7 +13,7 @@ import sys, os.path, tomllib, argparse
 DEBUG_LEVEL = 1
 
 
-# xterm formatting
+# ANSI SGR formatting sequences
 def f(code): return '\x1B[' + str(code) + 'm'
 def c(code): return f('38;5;' + str(code))
 
