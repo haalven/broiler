@@ -21,7 +21,7 @@ def c(code): return f('38;5;' + str(code))
 def warn(msg:str):
     global DEBUG_LEVEL
     if DEBUG_LEVEL:
-        print(c(196) + str(msg) + f(0),
+        print(c(196) + str(msg) + f(39),
               file=sys.stderr)
 
 # read TOML file
