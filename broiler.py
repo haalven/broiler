@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 # or /usr/bin/python3
 # or /path/to/.venv/bin/python3
+# or /Users/foobar/python-venv/.venv/bin/python3
 
 # name of the program
 # what is this?
@@ -8,7 +9,7 @@
 # syntax: program [--option] parameter
 
 
-import sys, os.path, tomllib, argparse
+import sys, pathlib, tomllib, argparse
 
 DEBUG_LEVEL = 1
 
@@ -25,11 +26,10 @@ def warn(msg:str):
               file=sys.stderr)
 
 # read TOML file
-def read_configuration(my_dir:str, my_name:str) -> dict:
-    c_file = os.path.splitext(my_name)[0] +'.toml'
-    c_path = os.path.join(my_dir, c_file)
+def read_configuration(my_path:Path) -> dict:
+    config_path = my_path.with_suffix('.toml')
     try:
-        with open(c_path, 'rb') as f:
+        with open(config_path, 'rb') as f:
             return tomllib.load(f)
     except Exception as e:
         warn('toml error: ' + str(e))
@@ -49,12 +49,12 @@ def get_arguments(my_name:str) -> argparse.Namespace:
 
 def main() -> int:
     # my path
-    my_path = os.path.abspath(__file__)
-    my_dir  = os.path.dirname(my_path)
-    my_name = os.path.basename(my_path)
+    my_path = pathlib.Path(__file__)
+    my_dir  = str(my_path.parent)
+    my_name = str(my_path.name)
 
     # load configuration file
-    config = read_configuration(my_dir, my_name)
+    config = read_configuration(my_path)
 
     # get arguments.parameter and arguments.option
     arguments = get_arguments(my_name)
