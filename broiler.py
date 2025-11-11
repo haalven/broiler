@@ -26,7 +26,7 @@ def warn(msg:str):
               file=sys.stderr)
 
 # read TOML file
-def read_configuration(my_path:Path) -> dict:
+def read_configuration(my_path:pathlib.Path) -> dict:
     config_path = my_path.with_suffix('.toml')
     try:
         with open(config_path, 'rb') as f:
