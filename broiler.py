@@ -20,7 +20,7 @@ def fc(code) -> str:
 
 # formatted warnings
 def warn(msg):
-    print(fc(196)+str(msg)+ft(39), file=sys.stderr)
+    print(fc(196)+str(msg)+ft(0), file=sys.stderr)
 
 # read configuration file
 def read_configuration(my_path:pathlib.Path) -> dict:
