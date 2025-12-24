@@ -52,10 +52,10 @@ def main() -> int:
     my_dir  = str(my_path.parent)
     my_name = str(my_path.name)
 
-    # load configuration file
+    # load configuration
     config = read_configuration(my_path)
 
-    # get arguments.parameter and arguments.option
+    # get arguments
     arguments = get_arguments(my_name)
 
     # fancy code starts here
