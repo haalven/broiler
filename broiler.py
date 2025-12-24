@@ -11,21 +11,18 @@
 
 import sys, pathlib, tomllib, argparse
 
-DEBUG_LEVEL = 1
-
 
 # ANSI SGR formatting sequences
-def f(code): return '\x1b[' + str(code) + 'm'
-def c(code): return f('38;5;' + str(code))
+def f(code) -> str:
+    return '\x1b[' + str(code) + 'm'
+def c(code) -> str:
+    return f('38;5;' + str(code))
 
-# warnings
-def warn(msg:str):
-    global DEBUG_LEVEL
-    if DEBUG_LEVEL:
-        print(c(196) + str(msg) + f(39),
-              file=sys.stderr)
+# formatted warnings
+def warn(msg):
+    print(c(196) + str(msg) + f(39), file=sys.stderr)
 
-# read TOML file
+# read configuration file
 def read_configuration(my_path:pathlib.Path) -> dict:
     config_path = my_path.with_suffix('.toml')
     try:
