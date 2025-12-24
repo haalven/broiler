@@ -13,14 +13,14 @@ import sys, pathlib, tomllib, argparse
 
 
 # ANSI SGR formatting sequences
-def f(code) -> str:
+def ft(code) -> str:
     return '\x1b[' + str(code) + 'm'
-def c(code) -> str:
-    return f('38;5;' + str(code))
+def fc(code) -> str:
+    return ft('38;5;' + str(code))
 
 # formatted warnings
 def warn(msg):
-    print(c(196) + str(msg) + f(39), file=sys.stderr)
+    print(fc(196)+str(msg)+ft(39), file=sys.stderr)
 
 # read configuration file
 def read_configuration(my_path:pathlib.Path) -> dict:
@@ -29,7 +29,7 @@ def read_configuration(my_path:pathlib.Path) -> dict:
         with open(config_path, 'rb') as f:
             return tomllib.load(f)
     except Exception as e:
-        warn('toml error: ' + str(e))
+        warn('TOML error: ' + str(e))
         return {}
 
 # parse arguments
