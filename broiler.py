@@ -44,6 +44,7 @@ def get_arguments(my_name:str) -> argparse.Namespace:
                         help='option help')
     return parser.parse_args()
 
+
 # main program
 def main() -> int:
     # my path
