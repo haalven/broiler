@@ -23,7 +23,7 @@ def warn(msg):
     print(fc(196) + str(msg) + ft(0), file=sys.stderr)
 
 # read configuration file
-def read_configuration(my_path:pathlib.Path) -> dict:
+def read_configuration(my_path: pathlib.Path) -> dict:
     config_path = my_path.with_suffix('.toml')
     try:
         with open(config_path, 'rb') as f:
@@ -33,7 +33,7 @@ def read_configuration(my_path:pathlib.Path) -> dict:
         return {}
 
 # parse arguments
-def get_arguments(my_name:str) -> argparse.Namespace:
+def get_arguments(my_name: str) -> argparse.Namespace:
     parser = argparse.ArgumentParser(prog=my_name)
     parser.add_argument('parameter',
                         type=str,
