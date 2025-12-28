@@ -49,14 +49,14 @@ def get_arguments(my_name:str) -> argparse.Namespace:
 def main() -> int:
     # my path
     my_path = pathlib.Path(__file__)
-    my_dir  = str(my_path.parent)
-    my_name = str(my_path.name)
+    my_dir  = my_path.parent
+    my_name = my_path.name
 
     # load configuration
     config = read_configuration(my_path)
 
     # get arguments
-    arguments = get_arguments(my_name)
+    arguments = get_arguments(str(my_name))
 
     # fancy code starts here
 
