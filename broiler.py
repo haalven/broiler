@@ -56,7 +56,7 @@ def main() -> int:
     config = read_configuration(my_path)
 
     # get arguments
-    arguments = get_arguments(str(my_name))
+    arguments = get_arguments(my_name)
 
     # fancy code starts here
 
